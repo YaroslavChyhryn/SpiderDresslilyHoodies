@@ -27,9 +27,14 @@ class HoodieSpider(scrapy.Spider):
         l.add_value('product_id', response.url)
         l.add_value('product_url', response.url)
         l.add_css('name', 'span.goodtitle')
-        l.add_xpath('discount', '//span[@class="off js-dl-cutoff"]/span')
-        l.add_css('original_price', 'span.curPrice::attr(data-orgp)')
-        l.add_css('discounted_price', 'span.js-dl-marketPrice')
+
+        if response.xpath('//span[@class="off js-dl-cutoff"]/span').get():
+            l.add_xpath('discount', '//span[@class="off js-dl-cutoff"]/span')
+            l.add_css('original_price', 'span.js-dl-marketPrice.marketPrice.my-shop-price::attr(data-orgp)')
+            l.add_css('discounted_price', 'span.curPrice.shop-price-red::attr(data-orgp)')
+        else:
+            l.add_css('original_price', 'span.curPrice.my-shop-price.js-dl-curPrice::attr(data-orgp)')
+
         l.add_css('total_reviews', 'strong#js_reviewCountText')
 
         l.add_xpath('product_info', '//div[@class="xxkkk20"]')

@@ -70,8 +70,7 @@ class SpiderdresslilyHoodiesItem(scrapy.Item):
     discount = scrapy.Field(input_processor=(MapCompose(remove_tags,
                                                         string_to_int)),
                             output_processor=TakeFirst())
-    discounted_price = scrapy.Field(input_processor=(MapCompose(check_display_attr,
-                                                                string_to_float)),
+    discounted_price = scrapy.Field(input_processor=(MapCompose(string_to_float)),
                                     output_processor=TakeFirst())
     original_price = scrapy.Field(input_processor=(MapCompose(string_to_float)),
                                   output_processor=TakeFirst())
