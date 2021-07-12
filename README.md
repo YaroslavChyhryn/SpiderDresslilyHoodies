@@ -5,7 +5,9 @@
 Собрать информацию о мужских худи с
 сайта: https://www.dresslily.com/hoodies-c-181.html 
 
-Требуемая информация
+## Requirements
+Splash (http://localhost:8050) and Chrome Webdriver in PATH
+## Требуемая информация
 данные по продукту
 * product_id
 * product_url
