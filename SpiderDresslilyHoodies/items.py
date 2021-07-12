@@ -65,6 +65,7 @@ class SpiderdresslilyReviewsItem(scrapy.Item):
     product_id = scrapy.Field(input_processor=(MapCompose(product_id_from_product_url)), output_processor=TakeFirst())
     rating = scrapy.Field(input_processor=(MapCompose(count_rating)), output_processor=TakeFirst())
     timestamp = scrapy.Field(input_processor=(MapCompose(remove_tags, format_time)), output_processor=TakeFirst())
+    # todo Проверить кодировку, не все отображается корректно в excel
     text = scrapy.Field(input_processor=(MapCompose(remove_tags)), output_processor=TakeFirst())
     size = scrapy.Field(input_processor=(MapCompose(format_size)), output_processor=TakeFirst())
     color = scrapy.Field(input_processor=(MapCompose(format_color)), output_processor=TakeFirst())
